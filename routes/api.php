@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/products', [ProductController::class, 'store']);
+Route::put('/products/{id}', [ProductController::class, 'update']);
+Route::get('/products', [ProductController::class, 'index']);
+Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
 Route::middleware(['jwt.verify'])->group(function () {
     Route::get('/profile', function () {

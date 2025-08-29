@@ -14,7 +14,6 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        // Validasi input
         $validator = Validator::make($request->all(), [
             'name'     => 'required|string|max:255',
             'email'    => 'required|string|email|max:255|unique:users',
@@ -23,7 +22,6 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            // cek khusus email unique
             if ($validator->errors()->has('email')) {
                 return response()->json([
                     'status'  => 'error',
@@ -37,7 +35,6 @@ class AuthController extends Controller
             ], 422);
         }
 
-        // Simpan user
         $user = User::create([
             'name'     => $request->name,
             'email'    => $request->email,

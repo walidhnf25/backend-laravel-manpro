@@ -14,6 +14,12 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
+    public function count()
+    {
+        $total = \DB::table('product')->count();
+        return response()->json(['total' => $total]);
+    }
+
     public function store(Request $request)
     {
         // Validasi input

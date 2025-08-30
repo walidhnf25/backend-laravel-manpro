@@ -56,4 +56,12 @@ class UserController extends Controller
             'message' => 'Password berhasil diperbarui'
         ]);
     }
+    
+    public function profile(Request $request)
+    {
+        return response()->json([
+            'success' => true,
+            'user' => $request->user()
+        ]);
+    }
 }

@@ -16,7 +16,7 @@ class ProductController extends Controller
 
     public function count()
     {
-        $total = \DB::table('product')->count();
+        $total = Product::count(); // pakai model
         return response()->json(['total' => $total]);
     }
 
